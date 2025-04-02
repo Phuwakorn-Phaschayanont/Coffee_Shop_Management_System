@@ -1,0 +1,97 @@
+@font-face {
+    font-family: Arial, sans-serif;
+    src: url("")
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("photo/home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+.header {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0;
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวแกน Y */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* ทำให้ header อยู่ด้านบนสุด */
+    background-color: white;
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.user-button { 
+    position: absolute;
+    color: #ad6826;
+    left: 30px;
+    font-size: 30px;
+}
+.user-button i {
+    transition: color 0.1s;
+}
+.user-button:hover i { 
+    color: rgb(184, 184, 184); 
+}
+
+.main-manage {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    text-align: center; 
+    font-size: 17px; 
+    color: #000000; 
+    background-color: rgba(134, 134, 134, 0.3);
+    padding: 20px; 
+}
+
+.main-manage h1 {
+    font-size: 55px; 
+    margin-top: 20px;
+}
+
+.main-content {
+    margin-top: 30px;
+    flex-direction: row;
+}
+
+.start-btn { /* ปุ่มเพิ่มสินค้า */
+    background-color: #ad6826;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px ;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.start-btn:hover {
+    background-color: #945921;
+    transform: scale(1.4);
+}
+
+/*Tablet first*/
+@media screen and (max-width: 1024px) {
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/*Mobile first*/
+@media screen and (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+    }
+}

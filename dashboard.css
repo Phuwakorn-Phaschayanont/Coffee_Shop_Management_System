@@ -1,0 +1,151 @@
+@font-face {
+    font-family: Arial, sans-serif;
+    src: url("")
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+.header {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 0; /* ลบระยะห่างด้านบน */
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวแกน Y */
+    position: fixed; /* ทำให้ header อยู่ในตำแหน่งคงที่ */
+    top: 0; /* ชิดด้านบน */
+    left: 0; /* ชิดด้านซ้าย */
+    width: 100%; /* ให้ header ครอบคลุมความกว้างของหน้า */
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.home-button {
+    position: absolute;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.home-button i { 
+    font-size: 30px;
+    transition: color 0.1s;
+}
+.home-button:hover {
+    color: rgb(184, 184, 184);
+}
+
+.user-button { 
+    position: absolute;
+    right: 75px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.user-button i {
+    transition: color 0.1s;
+}
+.user-button:hover i {
+    color: rgb(184, 184, 184); 
+}
+
+.sidebar {
+    width: 250px;
+    background: #ad6826;
+    color: white;
+    position: fixed;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar a:hover {
+    background: #945921;
+    transform: translateX(10px); /* ขยับปุ่มไปทางขวา 10px เมื่อเอาเมาส์ชี้ */
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 270px;
+    margin-top: 60px; /* เพิ่มระยะห่างด้านบนเพื่อไม่ให้ทับกับ header */
+    padding: 20px;
+}
+
+.main-manage {
+    display: flex;
+    font-size: 18px;
+    justify-content: space-between;
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวแกน Y */
+    margin-top: 27px; 
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); /* ขยับขึ้นเล็กน้อยเมื่อเอาเมาส์ชี้ */
+}
+
+.card-title {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 35px;
+    color: #6c757d;
+}
+
+.card-body {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}
+
+
+/*Tablet first*/
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 220px;
+    }
+}
+
+/*Mobile first*/
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        margin-top: 60px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
