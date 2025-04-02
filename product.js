@@ -16,11 +16,11 @@ window.onload = async () => {
             const product = response.data
 
             // 2. เราจะนำข้อมูลของ product ที่ดึงมา ใส่ใน input ที่เรามี
-            let nameDOM = document.querySelector('input[name=name]')
+            let productNameDOM = document.querySelector('input[name=productName]')
             let descriptionDOM = document.querySelector('textarea[name=description]')
             let pricesDOM = document.querySelector('input[name=prices]')
 
-            nameDOM.value = product.name
+            productNameDOM.value = product.productName
             descriptionDOM.value = product.description
             pricesDOM.value = product.prices
 
@@ -40,7 +40,7 @@ window.onload = async () => {
 const validateData = (productData) => {
     let errors = []
 
-    if (!productData.name) {
+    if (!productData.productName) {
         errors.push('กรุณากรอกชื่อสินค้า')
     }
     if (!productData.category) {
@@ -56,7 +56,7 @@ const validateData = (productData) => {
 }
 
 const submitData = async () => {
-    let nameDOM = document.querySelector('input[name=name]');
+    let productNameDOM = document.querySelector('input[name=productName]');
     let categoryDOM = document.querySelector('input[name=category]:checked') || {}
     let descriptionDOM = document.querySelector('textarea[name=description]');
     let pricesDOM = document.querySelector('input[name=prices]');
@@ -65,7 +65,7 @@ const submitData = async () => {
 
     try {
         let productData = {
-            name: nameDOM.value,
+            productName: productNameDOM.value,
             category: categoryDOM.value,
             description: descriptionDOM.value,
             prices: pricesDOM.value

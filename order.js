@@ -17,13 +17,13 @@ window.onload = async () => {
 
             // 2. เราจะนำข้อมูลของ order ที่ดึงมา ใส่ใน input ที่เรามี
             let customerDOM = document.querySelector('input[name=customer]')
-            let nameDOM = document.getElementById('name').addEventListener('change', calculateTotal)
+            let productNameDOM = document.getElementById('productName').addEventListener('change', calculateTotal)
             let quantityDOM = document.getElementById('quantity')
             let pricesDOM = document.getElementById('prices')
             let totalDOM = document.getElementById('total')
 
             customerDOM.value = order.customer
-            nameDOM.value = order.name
+            productNameDOM.value = order.productName
             quantityDOM.value = order.quantity
             pricesDOM.value = order.prices
             totalDOM.value = order.total
@@ -59,7 +59,7 @@ const loadProducts = async () => {
         const response = await axios.get(`${BASE_URL}/products`);
         const products = response.data;
 
-        const productSelect = document.getElementById('name');
+        const productSelect = document.getElementById('productName');
 
         // ล้างตัวเลือกเก่าออกก่อน
         productSelect.innerHTML = '<option disabled selected>Select a product</option>';
@@ -67,8 +67,8 @@ const loadProducts = async () => {
         // เติมตัวเลือกใหม่จาก API
         products.forEach(productData => {
             const option = document.createElement('option');
-            option.value = productData.name; // เก็บชื่อสินค้าใน value
-            option.textContent = productData.name; // แสดงชื่อสินค้าในตัวเลือก
+            option.value = productData.productName; // เก็บชื่อสินค้าใน value
+            option.textContent = productData.productName; // แสดงชื่อสินค้าในตัวเลือก
             option.setAttribute('data-price', productData.prices); // เก็บราคาสินค้าใน data-price
             productSelect.appendChild(option);
         });
@@ -79,7 +79,7 @@ const loadProducts = async () => {
 
 // ฟังก์ชันสำหรับคำนวณยอดรวม
 const calculateTotal = () => {
-    const productSelect = document.getElementById('name')
+    const productSelect = document.getElementById('productName')
     const quantityInput = document.getElementById('quantity')
     const priceInput = document.getElementById('prices')
     const totalPriceInput = document.getElementById('total')
@@ -101,7 +101,7 @@ const validateOrderData = (orderData) => {
     if (!orderData.customer) {
         errors.push('กรุณากรอกชื่อผู้สั่งซื้อ')
     }
-    if (!orderData.name) {
+    if (!orderData.productName) {
         errors.push('กรุณากรอกชื่อสินค้า')
     }
     if (!orderData.options) {
@@ -124,7 +124,7 @@ const validateOrderData = (orderData) => {
 
 const submitData = async () => {
     let customerDOM = document.querySelector('input[name=customer]');
-    let nameDOM = document.getElementById('name');
+    let productNameDOM = document.getElementById('productName');
     let optionsDOMs = document.querySelector('input[name=options]:checked') || {}
     let quantityDOM = document.getElementById('quantity');
     let pricesDOM = document.getElementById('prices');
@@ -136,7 +136,7 @@ const submitData = async () => {
     try {
         let orderData = {
             customer: customerDOM.value,
-            name: nameDOM.value,
+            productName: productNameDOM.value,
             options: optionsDOMs.value,
             quantity: quantityDOM.value,
             prices: pricesDOM.value,

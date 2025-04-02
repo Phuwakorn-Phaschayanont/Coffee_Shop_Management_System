@@ -43,7 +43,7 @@ const initMySQL = async () => {
 const validatedata = (productData) => {
   let errors = []
 
-  if (!productData.name) {
+  if (!productData.productName) {
     errors.push('กรุณากรอกชื่อสินค้า')
   }
   if (!productData.category) {
@@ -64,7 +64,7 @@ const validateOrderData = (orderData) => {
   if (!orderData.customer) {
     errors.push('กรุณากรอกชื่อผู้สั่งซื้อ')
   }
-  if (!orderData.name) {
+  if (!orderData.productName) {
     errors.push('กรุณาเลือกสินค้า')
   }
   if (!orderData.options) {

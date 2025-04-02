@@ -34,7 +34,7 @@ const loadData = async () => {
         htmlData += `<tr>
             <td>${orders.id}</td> 
             <td>${orders.customer}</td>
-            <td>${orders.name}</td>
+            <td>${orders.productName}</td>
             <td>${orders.options}</td>
             <td>${orders.quantity}</td>
             <td>${orders.prices}</td>
