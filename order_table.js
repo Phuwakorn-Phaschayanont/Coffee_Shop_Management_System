@@ -41,7 +41,6 @@ const loadData = async () => {
             <td>${orders.total}</td>
             <td>${orders.payment}</td>
             <td>
-                <a href='add_order.html?id=${orders.id}'><button class='edit'><i class="fa-duotone fa-solid fa-pen-to-square"></i></button></a>
                 <button class='delete' data-id='${orders.id}'><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>`
@@ -68,21 +67,21 @@ const loadData = async () => {
     const filterDOM = document.getElementById('filter')
     filterDOM.addEventListener('keyup', (event) => { // keyup = เมื่อมีการพิมพ์ใน input จะทำงาน
         const filterValue = event.target.value.toLowerCase() // แปลงเป็นตัวพิมพ์เล็กทั้งหมด
-        const rows = orderDOM.getElementsByTagName('tr')
+        const rows = orderDOM.getElementsByTagName('tr') // ดึงข้อมูลทั้งหมดในตาราง
         
         // ลูปผ่านข้อมูลแต่ละแถวในตาราง
-        for (let i = 1; i < rows.length; i++) {
+        for (let i = 1; i < rows.length; i++) {  // เริ่มที่ 1 เพราะแถวแรกเป็น header
             const cells = rows[i].getElementsByTagName('td') // ดึงข้อมูลแต่ละแถวในตาราง
             let rowContainsFilterValue = false // ตัวแปรเช็คว่าแถวนี้มีค่าที่ค้นหาหรือไม่
 
             // ลูปผ่านข้อมูลแต่ละเซลล์ในแถว
-            for (let j = 0; j < cells.length; j++) {
+            for (let j = 0; j < cells.length; j++) { // ดึงข้อมูลแต่ละเซลล์ในแถว
                 if (cells[j].innerText.toLowerCase().includes(filterValue)) { // ตรวจสอบว่าแถวนี้มีค่าที่ค้นหาหรือไม่
                     rowContainsFilterValue = true
                     break
                 }
             } 
-            // ถ้าแถวไหนมีค่าตรงกับคำที่ค้นหาให้แสดง ถ้าไม่ใช่คำที่ค้นหาให้ซ่อน
+            // ถ้าแถวไหนมีค่าตรงกับคำที่ค้นหาให้แสดง ถ้าไม่ใช่ไม่ต้องแสดง
             rows[i].style.display = rowContainsFilterValue ? '' : 'none'
         }
     })

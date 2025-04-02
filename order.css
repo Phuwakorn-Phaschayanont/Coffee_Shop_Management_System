@@ -125,20 +125,10 @@ body {
     transition: 0.2s;
 }
 
-.user-table td .edit, .user-table td .delete {
+.user-table td .delete {
     cursor: pointer;
     border-radius: 8px;
-}
-
-.user-table td .edit {
-    background-color: #ad6826;
-    color: white;
-    font-size: 15px;
-}
-
-.user-table td .edit:hover {
-    transition: 0.1s;
-    transform: scale(1.1); /* ขยายขนาดเมื่อเอาเม้าชึ้ */
+    margin-left: 9.5px;
 }
 
 .user-table td .delete {
@@ -161,6 +151,11 @@ body {
     .main-content {
         margin-left: 220px;
     }
+
+    .user-table th, .user-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
 }
 
 /*Mobile first*/
@@ -174,5 +169,10 @@ body {
     .main-content {
         margin-left: 0;
         margin-top: 0;
+    }
+
+    .user-table th, .user-table td {
+        padding: 6px;
+        font-size: 14px;
     }
 }

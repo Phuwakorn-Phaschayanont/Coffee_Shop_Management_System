@@ -160,6 +160,11 @@ body {
     .main-content {
         margin-left: 220px;
     }
+
+    .user-table th, .user-table td {
+        padding: 12px;
+        font-size: 14px;
+    }
 }
 
 /*Mobile first*/
@@ -173,5 +178,10 @@ body {
     .main-content {
         margin-left: 0;
         margin-top: 0;
+    }
+
+    .user-table th, .user-table td {
+        padding: 9px;
+        font-size: 14px;
     }
 }

@@ -10,25 +10,10 @@ const loadDashboard = async () => {
         const summary = response.data;
 
         // อัปเดตข้อมูลใน Dashboard
-        document.getElementById('totalProducts').textContent = summary.totalProducts;
-        document.getElementById('totalOrders').textContent = summary.totalOrders;
-        document.getElementById('totalEmployee').textContent = summary.totalEmployee;
+        document.getElementById('totalProducts').textContent = summary.totalProducts; // จำนวนสินค้า
+        document.getElementById('totalOrders').textContent = summary.totalOrders; // จำนวนคำสั่งซื้อ
+        document.getElementById('totalEmployee').textContent = summary.totalEmployee; // จำนวนพนักงาน
     } catch (err) {
-        console.error('Error loading dashboard: ', err)
+        console.error('error loading dashboard: ', err)
     }
-
-    // ให้อัพเดตไปที่ mySQL ทุก ๆ 5 วินาที
-    setInterval(async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/dashboard`);
-            const summary = response.data;
-
-            // อัปเดตข้อมูลใน Dashboard
-            document.getElementById('totalProducts').textContent = summary.totalProducts;
-            document.getElementById('totalOrders').textContent = summary.totalOrders;
-            document.getElementById('totalEmployee').textContent = summary.totalEmployee;
-        } catch (err) {
-            console.error('Error loading dashboard: ', err)
-        }
-    }, 5000);
-} 
+}

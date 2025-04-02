@@ -34,13 +34,13 @@ const validateUserData = (userData) => {
     let errors = []
   
     if (!userData.employee) {
-      errors.push('กรุณากรอกชื่อผู้ใช้')
+      errors.push('กรุณากรอกชื่อพนักงาน')
     }
     if (!userData.email) {
-        errors.push('กรุณากรอกอีเมล')
+        errors.push('กรุณากรอกอีเมลล์')
     }
     if (!userData.position) {
-      errors.push('กรุณาเลือกตำแหน่ง')
+      errors.push('กรุณากรอกตำแหน่ง')
     }
     return errors
   }

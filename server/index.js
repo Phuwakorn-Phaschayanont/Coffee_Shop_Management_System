@@ -1,19 +1,3 @@
-/*const http = require('http'); // Import Node.js core module
-
-const host = 'localhost'; // Localhost
-const port = 8000; // Port number
-
-// เมื่อเปิด เว็บไปที่ http://localhost:8000/ จะเรียกใช้งาน function requireListener
-const requireListener = function (req, res) {
-  res.writeHead(200);
-  res.end('My first server!');
-}
-
-const server = http.createServer(requireListener);
-server.listen(port, host, () => {
-          console.log(`Server is running on http://${host}:${port}`);
-});*/
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2/promise');
@@ -200,21 +184,6 @@ app.delete('/products/:id', async (req, res) => {
   }
 })
 
-/*
- path: GET /products สำหรับแสดงข้อมูล product เฉพาะ id, name, price
-app.get('/products', async (req, res) => {
-  try {
-      const [rows] = await db.query('SELECT id, name, price FROM products');
-      res.json(rows);
-  } catch (err) {
-    console.error('error: ', err.message)
-    res.status(500).json({ 
-      message: 'something went wrong',
-      errorMessage: err.message
-    })
-  }
-})
-*/
 
 /*Order*/
 //path: GET /orders สำหรับแสดงข้อมูล order ทั้งหมดที่บันทึกไว้
@@ -307,29 +276,6 @@ app.delete('/orders/:id', async (req, res) => {
     })
   }
 })
-
-/*Bill
-//path: GET /bills สำหรับแสดงข้อมูล bill ทั้งหมดที่บันทึกไว้
-app.get('/bills', async (req, res) => {
-  const result = await conn.query('SELECT * FROM bills')
-  res.json(result[0])
-})
-
-//path: GET /products ดึงข้อมูล products ไปใส่ใน bill
-app.get('/products', async (req, res) => {
-  const result = await conn.query('SELECT product, quantity, total, payment FROM products');
-  res.json(result[0])
-  conn.query(query, (err, results) => {
-      if (err) {
-          res.status(500).json({ 
-            error: err.message 
-          })
-      } else {
-          res.json(results)
-      }
-  })
-})
-*/
 
 
 /*User*/
@@ -447,21 +393,6 @@ app.get('/dashboard', async (req, res) => {
       errorMessage: err.message
     })
   }
-})
-
-//path: POST /update-dashboard สำหรับอัปเดตข้อมูลสรุปของระบบ
-app.post('/dashboard', (req, res) => {
-  const { totalProducts, totalOrders, totalEmployee } = req.body;
-
-  conn.query("UPDATE dashboard SET totalProducts = ?, totalOrders = ?, totalEmployee = ? WHERE id = 1",
-    [totalProducts, totalOrders, totalEmployee],
-    (err, result) => {
-      if (err) {
-        res.status(500).json({ error: "Database update error" });
-      } else {
-        res.json({ message: "Dashboard updated successfully" });
-      }
-    })
 })
 
 

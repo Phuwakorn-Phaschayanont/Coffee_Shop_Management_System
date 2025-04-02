@@ -7,20 +7,17 @@ window.onload = async () => {
     const id = urlParams.get('id'); // ดึง id จาก url
     console.log('id', id)
     if (id) {
-        mode = 'EDIT'
         selectedId = id
 
-        // 1. ดึงข้อมูล order ที่ต้องการ edit
         try {
             const response = await axios.get(`${BASE_URL}/orders/${id}`)
             const order = response.data
 
-            // 2. เราจะนำข้อมูลของ order ที่ดึงมา ใส่ใน input ที่เรามี
             let customerDOM = document.querySelector('input[name=customer]')
-            let productNameDOM = document.getElementById('productName').addEventListener('change', calculateTotal)
+            let productNameDOM = document.getElementById('productName').addEventListener('change', calculateTotal) //เรียกฟังก์ชันคำนวณยอดรวมเมื่อเปลี่ยนสินค้า
             let quantityDOM = document.getElementById('quantity')
-            let pricesDOM = document.getElementById('prices')
-            let totalDOM = document.getElementById('total')
+            let pricesDOM = document.getElementById('prices') //
+            let totalDOM = document.getElementById('total') // เรียกฟังก์ชันคำนวณยอดรวมเมื่อเปลี่ยนจำนวนสินค้า
 
             customerDOM.value = order.customer
             productNameDOM.value = order.productName
@@ -49,45 +46,43 @@ window.onload = async () => {
     }
 }
 
-// โหลดข้อมูล product จาก API เมื่อหน้าเว็บโหลด
 window.onload = async () => {
     await loadProducts();
 };
 
+// โหลดข้อมูลสินค้า จาก API และเติมสินค้าลงใน select
 const loadProducts = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/products`);
+        const response = await axios.get(`${BASE_URL}/products`); 
         const products = response.data;
 
-        const productSelect = document.getElementById('productName');
+        const productSelect = document.getElementById('productName'); // ตัวเลือกสินค้า
 
-        // ล้างตัวเลือกเก่าออกก่อน
-        productSelect.innerHTML = '<option disabled selected>Select a product</option>';
-
-        // เติมตัวเลือกใหม่จาก API
+        // วนลูปผ่านสินค้าและสร้าง option แต่ละสินค้า
         products.forEach(productData => {
-            const option = document.createElement('option');
+            const option = document.createElement('option'); // สร้างตัวเลือกใหม่
             option.value = productData.productName; // เก็บชื่อสินค้าใน value
             option.textContent = productData.productName; // แสดงชื่อสินค้าในตัวเลือก
             option.setAttribute('data-price', productData.prices); // เก็บราคาสินค้าใน data-price
-            productSelect.appendChild(option);
+            productSelect.appendChild(option); // เพิ่มตัวเลือกลงใน select
         });
     } catch (err) {
-        console.error('Error loading products:', err);
+        console.error('error loading product: ', err);
     }
 };
 
-// ฟังก์ชันสำหรับคำนวณยอดรวม
+// คำนวณยอดรวมของ order โดยอิงจากราคาสินค้าและจำนวนที่เลือก
 const calculateTotal = () => {
+    // ดึงข้อมูลจาก select และ input 
     const productSelect = document.getElementById('productName')
     const quantityInput = document.getElementById('quantity')
     const priceInput = document.getElementById('prices')
     const totalPriceInput = document.getElementById('total')
 
-     // ดึงราคาจาก data-price ของตัวเลือกที่เลือก
-    const selectedOption = productSelect.options[productSelect.selectedIndex]; // ตัวเลือกที่ถูกเลือก
-    const price = parseFloat(selectedOption.getAttribute('data-price')) || 0; // ราคาสินค้า
-    const quantity = parseInt(quantityInput.value) || 0 // จำนวนสินค้า
+     // ดึงราคาสินค้าที่เก็บใน data-price ของสินค้าที่ถูกเลือก
+    const selectedOption = productSelect.options[productSelect.selectedIndex]; // สินค้าที่ถูกเลือก
+    const price = parseFloat(selectedOption.getAttribute('data-price')) || 0; // แปลงราคาสินค้าเป็นตัวเลข
+    const quantity = parseInt(quantityInput.value) || 0 // แปลงจำนวนสินค้าเป็นตัวเลข
 
     priceInput.value = price; // อัปเดตราคาสินค้าในช่องราคา
     const totalPrice = price * quantity // คำนวณราคารวม
